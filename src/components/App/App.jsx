@@ -15,6 +15,11 @@ const App = () => {
   const navigate = useNavigate();
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
+  const register = (evt) => {
+    evt.preventDefault();
+    navigate("/signin", { replace: true });
+  };
+
   const logOut = () => {
     setIsLoggedIn(false);
     navigate("/signin", { replace: true });
@@ -24,11 +29,6 @@ const App = () => {
     evt.preventDefault();
     setIsLoggedIn(true);
     navigate("/movies", { replace: true });
-  };
-
-  const register = (evt) => {
-    evt.preventDefault();
-    navigate("/signin", { replace: true });
   };
 
   const isBurgerOpened = false;
