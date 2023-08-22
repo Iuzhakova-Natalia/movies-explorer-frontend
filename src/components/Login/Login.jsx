@@ -1,8 +1,8 @@
-import './Login.css';
-import { useEffect } from 'react';
-import { Link } from 'react-router-dom';
-import logo from '../../image/logo.svg';
-import useFormWithValidation from '../../components/hooks/useFormWithValidation';
+import "./Login.css";
+import { useEffect } from "react";
+import { Link } from "react-router-dom";
+import logo from "../../image/logo.svg";
+import useFormWithValidation from "../../components/hooks/useFormWithValidation";
 
 const Login = ({ logIn }) => {
   const { values, handleChange, resetForm, errors, isValid } =
@@ -25,15 +25,8 @@ const Login = ({ logIn }) => {
         noValidate
         onSubmit={handleSubmit}
       >
-        <Link
-          to="/"
-          className="login__link"
-        >
-          <img
-            src={logo}
-            alt="Логотип"
-            className="login__logo"
-          />
+        <Link to="/" className="login__link">
+          <img src={logo} alt="Логотип" className="login__logo" />
         </Link>
         <h1 className="login__title">Рады видеть!</h1>
         <div className="login__labels-container">
@@ -41,32 +34,32 @@ const Login = ({ logIn }) => {
             <span className="login__label-text">E-mail</span>
             <input
               name="email"
-              className={`login__input ${errors.email && 'login__input_error'}`}
+              className={`login__input ${errors.email && "login__input_error"}`}
               onChange={handleChange}
-              value={values.email || ''}
+              value={values.email || ""}
               type="email"
               required
             />
-            <span className="login__error">{errors.email || ''}</span>
+            <span className="login__error">{errors.email || ""}</span>
           </label>
           <label className="login__label">
             <span className="login__label-text">Пароль</span>
             <input
               name="password"
               className={`login__input ${
-                errors.password && 'login__input_error'
+                errors.password && "login__input_error"
               }`}
               onChange={handleChange}
-              value={values.password || ''}
+              value={values.password || ""}
               type="password"
               required
             />
-            <span className="login__error">{errors.password || ''}</span>
+            <span className="login__error">{errors.password || ""}</span>
           </label>
         </div>
         <button
           type="submit"
-          className={`login__button ${!isValid && 'login__button_disabled'}`}
+          className={`login__button ${!isValid && "login__button_disabled"}`}
           disabled={!isValid}
           onClick={logIn}
         >
@@ -74,10 +67,7 @@ const Login = ({ logIn }) => {
         </button>
         <span className="login__assist">
           Ещё не зарегистрированы?&nbsp;
-          <Link
-            to="/signup"
-            className="login__link"
-          >
+          <Link to="/signup" className="login__link">
             Регистрация
           </Link>
         </span>
