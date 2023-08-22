@@ -1,1 +1,1 @@
-Ссылка на макет
+Ссылка на макет https://disk.yandex.ru/d/t15KR-BtDVzZ_A
