@@ -1,75 +1,61 @@
-.not-found {
-  width: 100%;
-  min-height: 100vh;
+.notfound__container {
+  margin: 250px auto;
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  text-align: center;
 }
 
-.not-found__text-container {
+.notfound__title {
   margin: 0;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 5px;
-}
-
-.not-found__error {
   font-weight: 400;
   font-size: 140px;
-  line-height: 1.21;
+  line-height: normal;
+  font-style: normal;
 }
 
-.not-found__error-name {
-  font-weight: 400;
+.notfound__subtitle {
+  margin: 10px auto;
   font-size: 16px;
-  line-height: 1.19;
+  font-weight: 400;
+  line-height: normal;
 }
 
-.not-found__button {
-  padding: 0;
-  position: absolute;
-  left: 50%;
-  border: none;
-  background-color: transparent;
-  cursor: pointer;
-  font-weight: 400;
+.notfound__link {
+  margin: 174px 0 30px 0;
   font-size: 14px;
-  line-height: 1.21;
-  transform: translateX(-50%);
-  transition: all 0.3s ease;
-  bottom: 60px;
+  cursor: pointer;
+  text-align: center;
+  text-decoration: none;
+  line-height: normal;
   color: #4285f4;
 }
 
-.not-found__button:hover {
-  opacity: 0.8;
+.notfound__link:hover {
+  opacity: 0.7;
 }
 
-@media screen and (max-width: 800px) {
-  .not-found__button {
-    bottom: 212px;
+@media screen and (max-width: 768px) {
+  .notfound__container {
+    margin: 410px auto auto auto;
   }
 }
 
-@media screen and (max-width: 450px) {
-  .not-found__text-container {
-    gap: 10px;
+@media screen and (max-width: 550px) {
+  .notfound__container {
+    margin-top: 330px;
   }
 
-  .not-found__error {
+  .notfound__title {
     font-size: 80px;
   }
 
-  .not-found__error-name {
+  .notfound__subtitle {
+    margin: 13px auto 10px auto;
     font-size: 12px;
-    line-height: 1.25;
   }
 
-  .not-found__button {
+  .notfound__link {
     font-size: 12px;
-    line-height: 1.25;
-    bottom: 30px;
+    margin-top: 275px;
   }
 }

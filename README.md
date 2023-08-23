@@ -1,1 +1,7 @@
-Ссылка на макет https://disk.yandex.ru/d/t15KR-BtDVzZ_A
+#Сервис с фильмами
+
+#Фронт дипломного проекта
+
+Ссылка на макет Dark-4: https://disk.yandex.ru/d/dFowL7dbu_FEBA
+
+Домен фронта https://movies-front.nomoreparties.co

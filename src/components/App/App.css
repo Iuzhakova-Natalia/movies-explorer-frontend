@@ -1,21 +1,20 @@
-.app {
-  min-width: 320px;
-  width: 100%;
-  min-height: 100%;
-  display: flex;
-  align-items: center;
-  flex-direction: column;
-  position: relative;
-  font-family: "Inter", SuisseIntl, sans-serif;
-  color: #fff;
-  overflow: hidden;
-  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
-  -moz-osx-font-smoothing: grayscale;
-  -webkit-font-smoothing: antialiased;
+html {
+  background-color: #202020;
+  scroll-behavior: smooth;
+}
+
+.page {
+  max-width: 1280px;
+  min-height: 100vh;
+  margin: 0 auto;
+  box-sizing: border-box;
+  background-color: #202020;
+  font-family: "Inter", Arial, sans-serif;
   -webkit-text-size-adjust: 100%;
   -ms-text-size-adjust: 100%;
   -moz-text-size-adjust: 100%;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
   text-rendering: optimizeLegibility;
-
-  background-color: #202020;
+  color: #fff;
 }

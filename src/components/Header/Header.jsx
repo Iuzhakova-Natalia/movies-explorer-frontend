@@ -1,33 +1,39 @@
-import "./Header.css";
-import Logo from "../../image/logo.svg";
+import React from "react";
+import { Link } from "react-router-dom";
+import logo from "../../image/logo.svg";
+import { useLocation } from "react-router-dom";
 import Navigation from "../Navigation/Navigation";
-import { useMediaQuery } from "react-responsive";
-import { Link, useLocation } from "react-router-dom";
-import BurgerMenu from "../BurgerMenu/BurgerMenu";
+import "./Header.css";
 
-const Header = ({ isLoggedIn, logIn }) => {
-  const location = useLocation();
-  const isMobile = useMediaQuery({ query: `(max-width: 800px)` });
+function Header({ isAuth, props }) {
+  const { pathname } = useLocation();
+  const headerStyle = pathname === "/" ? "header header_type_blue" : "header";
 
   return (
-    <header
-      className={`header header_theme_${
-        location.pathname === "/" ? "mazarine" : "dark"
-      }`}
-    >
+    <header className={headerStyle}>
       <div className="header__container">
-        <Link to="/" className="header__link">
-          <img className="header__logo" src={Logo} alt="Логотип" />
+        <Link to={"/"} className="header__link">
+          <img className="header__logo" src={logo} alt="Логотип" />
         </Link>
 
-        {isMobile ? (
-          <BurgerMenu />
+        {!isAuth ? (
+          <div className="header__nuv">
+            <Link className="header__button" to={"/signup"}>
+              Регистрация
+            </Link>
+            <Link
+              className="header__button header__button_active"
+              to={"/signin"}
+            >
+              Войти
+            </Link>
+          </div>
         ) : (
-          <Navigation isLoggedIn={isLoggedIn} logIn={logIn} />
+          <Navigation />
         )}
       </div>
     </header>
   );
-};
+}
 
 export default Header;

@@ -1,36 +1,35 @@
+import { Link } from "react-router-dom";
 import "./Footer.css";
 
-const Footer = () => {
+function Footer() {
   return (
-    <section className="footer">
+    <footer className="footer">
       <div className="footer__container">
-        <h3 className="footer__title">
+        <p className="footer__title">
           Учебный проект Яндекс.Практикум х BeatFilm.
-        </h3>
-        <div className="footer__info">
-          <p className="footer__info-data">© {new Date().getFullYear()}</p>
-          <div className="footer__links">
-            <a
-              href="https://practicum.yandex.ru/"
+        </p>
+        <div className="footer__wrapper">
+          <p className="footer__date">© {new Date().getFullYear()}</p>
+          <nav className="footer__nav">
+            <Link
               target="_blank"
-              rel="noopener noreferrer"
               className="footer__link"
+              to={"https://practicum.yandex.ru/"}
             >
               Яндекс.Практикум
-            </a>
-            <a
-              href="https://github.com/iuzhakova-natalia"
+            </Link>
+            <Link
               target="_blank"
-              rel="noopener noreferrer"
               className="footer__link"
+              to={"https://github.com/Iuzhakova-Natalia"}
             >
-              Github
-            </a>
-          </div>
+              GitHub
+            </Link>
+          </nav>
         </div>
       </div>
-    </section>
+    </footer>
   );
-};
+}
 
 export default Footer;

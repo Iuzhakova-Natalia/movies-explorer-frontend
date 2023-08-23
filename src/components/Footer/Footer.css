@@ -1,95 +1,93 @@
 .footer {
-  width: 100%;
-  text-align: center;
-}
-
-.footer__container {
-  max-width: 1280px;
-  width: 100%;
-  margin: 0 auto;
-  padding: 0 70px;
-  display: flex;
-  flex-direction: column;
   box-sizing: border-box;
+  background: #202020;
 }
 
 .footer__title {
   margin: 0;
-  padding: 0 0 20px;
-  font-size: 13px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: normal;
-  border-bottom: #424242 solid 1px;
+  padding: 80px 0 20px 0;
+  text-align: center;
   color: #8b8b8b;
 }
 
-.footer__info {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 7px 0 0;
-}
-
-.footer__info-data {
+.footer__container {
+  max-width: 1280px;
+  padding: 0 70px;
+  margin: 0 auto;
   font-size: 13px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: normal;
+  box-sizing: border-box;
 }
 
-.footer__links {
+.footer__nav {
   display: flex;
   gap: 20px;
 }
 
+.footer__wrapper {
+  padding: 20px 0;
+  display: flex;
+  justify-items: center;
+  justify-content: space-between;
+  border-top: 1px solid #424242;
+  color: white;
+}
+
+.footer__date {
+  margin: 0;
+}
+
 .footer__link {
-  font-size: 13px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: normal;
+  color: white;
   text-decoration: none;
-  color: #fff;
 }
 
 .footer__link:hover {
   opacity: 0.7;
 }
 
-@media screen and (max-width: 800px) {
+@media screen and (max-width: 768px) {
   .footer__container {
     padding: 0 30px;
   }
 }
 
-@media screen and (max-width: 400px) {
+@media screen and (max-width: 550px) {
+  .footer__container {
+    padding: 0 14px;
+  }
+}
+
+@media screen and (max-width: 350px) {
   .footer__container {
     padding: 0 10px;
   }
 
   .footer__title {
-    padding: 0 0 21px;
     font-size: 12px;
+    line-height: normal;
   }
 
-  .footer__info {
-    padding: 29px 0 0;
+  .footer__wrapper {
+    display: flex;
+    flex-wrap: wrap;
     flex-direction: column-reverse;
   }
 
-  .footer__info-data {
-    font-size: 12px;
-    margin: 30px 0 20px;
-    color: rgba(139, 139, 139, 1);
-  }
-
-  .footer__links {
-    flex-direction: column;
-    gap: 13px;
-  }
-
   .footer__link {
+    width: 100%;
+    flex-shrink: 0;
+  }
+
+  .footer__nav {
+    margin-bottom: 30px;
+    flex-wrap: wrap;
+    gap: 12px;
+    text-align: center;
+  }
+
+  .footer__date {
+    text-align: center;
     font-size: 12px;
-    line-height: normal;
+    color: #8b8b8b;
   }
 }

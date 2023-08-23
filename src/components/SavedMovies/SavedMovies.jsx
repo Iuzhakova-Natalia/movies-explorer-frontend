@@ -1,14 +1,19 @@
-import MoviesCardList from "../MoviesCardList/MoviesCardList";
-import SearchForm from "../SearchForm/SearchForm";
-import "./SavedMovies.css";
+import SearchForm from '../SearchForm/SearchForm';
+import MoviesCardList from '../MoviesCardList/MoviesCardList';
+import Header from '../Header/Header';
+import Footer from '../Footer/Footer';
 
-const SavedMovies = () => {
-  return (
-    <main className="saved-movies">
+function SavedMovies() {
+    return (
+        <section className="saved-movies">
+      <Header isAuth={true} />
       <SearchForm />
       <MoviesCardList />
-    </main>
-  );
-};
+      <Footer />
+    </section>
+       
+    )
+
+}
 
 export default SavedMovies;

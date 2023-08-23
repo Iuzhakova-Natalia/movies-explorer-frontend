@@ -1,46 +1,70 @@
-import { NavLink, Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
+import Menu from "../Menu/Menu";
+import { useState } from "react";
 import "./Navigation.css";
+import iconMain from "../../image/icon__COLOR_icon-main.svg";
+import hamburgerMenu from "../../image/hamburger-menu.svg";
 
-const Navigation = ({ isLoggedIn, logIn }) => {
+function Navigation(props) {
+  const { pathname } = useLocation();
+  const isActive = (path) => pathname === path;
+  const [showPopup, setShowPopup] = useState(false);
   return (
-    <>
-      {!isLoggedIn ? (
-        <nav className="navigation">
-          <Link to="/signup" className="navigation__link">
-            Регистрация
-          </Link>
+    <div className="navigation">
+      <div className="navigation__wrapper">
+        <div className="navigation__buttons-wrapper">
           <Link
-            to="/signin"
-            className="navigation__link navigation__link_type_active"
-            onClick={logIn}
-          >
-            Войти
-          </Link>
-        </nav>
-      ) : (
-        <nav className="navigation">
-          <NavLink
-            to="/movies"
-            className="navigation__link navigation__link_type_film"
+            className={`navigation__btn ${
+              isActive("/movies") ? "navigation__btn_active_desc" : ""
+            }`}
+            to={"/movies"}
           >
             Фильмы
-          </NavLink>
-          <NavLink
-            to="/saved-movies"
-            className="navigation__link navigation__link_type_save-film"
+          </Link>
+          <Link
+            className={`navigation__btn ${
+              isActive("/saved-movies") ? "navigation__btn_active_desc" : ""
+            }`}
+            to={"/saved-movies"}
           >
             Сохранённые фильмы
-          </NavLink>
-          <NavLink
-            to="/profile"
-            className="navigation__link navigation__link_type_account"
-          >
-            Аккаунт
-          </NavLink>
-        </nav>
-      )}
-    </>
+          </Link>
+        </div>
+
+        <Link
+          className={`navigation__btn navigation__btn_type_profile ${
+            isActive("/profile") ? "navigation__btn_active_desc" : ""
+          }`}
+          to={"/profile"}
+        >
+          Аккаунт
+          <img
+            src={iconMain}
+            alt="Переход на страницу профиля"
+            className={
+              pathname === "/"
+                ? "navigation__icon navigation__icon_type_blue"
+                : "navigation__icon"
+            }
+          />
+        </Link>
+      </div>
+      <div className="navigation__btn-tab">
+        <button
+          onClick={setShowPopup}
+          type="button"
+          className="navigation__btn"
+        >
+          <img
+            src={hamburgerMenu}
+            alt="Открыть меню"
+            className="navigation__icon navigation__icon_type_burger"
+          />
+        </button>
+      </div>
+      <Menu isOpen={showPopup} onClose={() => setShowPopup(false)} />
+    </div>
   );
-};
+}
 
 export default Navigation;

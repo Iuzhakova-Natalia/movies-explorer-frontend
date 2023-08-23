@@ -1,69 +1,60 @@
-import './Profile.css';
-import useFormWithValidation from '../../components/hooks/useFormWithValidation';
+import Header from "../Header/Header";
+import { Link } from "react-router-dom";
+import "./Profile.css";
 
-export default function Profile({ logOut }) {
-  const { values, handleChange, errors, isValid } = useFormWithValidation();
-
+function Profile() {
   return (
-    <main className="profile">
-      <form
-        className="profile__form"
-        name="profile"
-        noValidate
-      >
-        <h1 className="profile__title">Привет, Виталий!</h1>
-        <div className="profile__labels-container">
-          <label className="profile__label">
-            <span className="profile__label-text">Имя</span>
+    <>
+      <Header isAuth={true} />
+      <section className="profile">
+        <h2 className="profile__header">Привет, Виталий!</h2>
+        <form className="profile__form" noValidate>
+          <div className="profile__input-wrapper">
+            <label htmlFor="name" className="profile__label">
+              Имя
+            </label>
             <input
+              className="profile__input"
               name="name"
-              className={`profile__input ${
-                errors.name && 'profile__input_error'
-              }`}
-              onChange={handleChange}
-              value={values.name || ''}
-              type="text"
-              required
+              id="name"
+              autoComplete="off"
+              type="name"
               minLength="2"
               maxLength="30"
-              pattern="^[A-Za-zА-Яа-яЁё /s -]+$"
-            />
-            <span className="profile__error-name">{errors.name || ''}</span>
-          </label>
-          <label className="profile__label">
-            <span className="profile__label-text">E-mail</span>
-            <input
-              name="email"
-              className={`profile__input ${
-                errors.email && 'profile__input_error'
-              }`}
-              onChange={handleChange}
-              value={values.email || ''}
-              type="email"
+              defaultValue={"Виталий" || ""}
               required
             />
-            <span className="profile__error">{errors.email || ''}</span>
-          </label>
-        </div>
-        <div className="profile__button-container">
-          <button
-            type="submit"
-            className={`profile__button-edit ${
-              !isValid && 'profile__button-edit_disabled'
-            }`}
-            disabled={!isValid ? true : false}
-          >
-            Редактировать
-          </button>
-          <button
-            type="submit"
-            className="profile__button-exit"
-            onClick={logOut}
-          >
-            Выйти из аккаунта
-          </button>
-        </div>
-      </form>
-    </main>
+          </div>
+          <span className="profile__input-error">Произошла ошибка...</span>
+
+          <div className="profile__input-wrapper">
+            <label htmlFor="email" className="profile__label">
+              E-mail
+            </label>
+            <input
+              className="profile__input"
+              name="email"
+              id="email"
+              autoComplete="off"
+              type="email"
+              minLength="2"
+              maxLength="30"
+              defaultValue={"pochta@yandex.ru" || ""}
+              required
+            />
+          </div>
+          <span className="profile__input-error">Произошла ошибка...</span>
+        </form>
+
+        <button type="button" className="profile__register">
+          Редактировать
+        </button>
+        <Link to="/signin" className="profile__exit">
+          Выйти из аккаунта
+        </Link>
+      </section>
+    </>
   );
 }
+
+export default Profile;

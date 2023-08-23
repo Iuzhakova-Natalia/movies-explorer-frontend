@@ -1,14 +1,17 @@
 import MoviesCardList from "../MoviesCardList/MoviesCardList";
 import SearchForm from "../SearchForm/SearchForm";
-import "./Movies.css";
+import Header from "../Header/Header";
+import Footer from "../Footer/Footer";
 
-const Movies = () => {
+function Movies() {
   return (
-    <main className="movies">
+    <section className="movies">
+      <Header isAuth={true} />
       <SearchForm />
       <MoviesCardList />
-    </main>
+      <Footer />
+    </section>
   );
-};
+}
 
 export default Movies;

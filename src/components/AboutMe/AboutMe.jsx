@@ -1,21 +1,17 @@
+import { Link } from "react-router-dom";
 import "./AboutMe.css";
-import avatar from "../../image/photo.jpg";
+import photo from "../../image/photo.jpg";
 
-const AboutMe = () => {
+function AboutMe() {
   return (
     <section className="about-me">
+      <h2 className="about-me__header">Студент</h2>
+
       <div className="about-me__container">
-        <h2 className="section-title">Студент</h2>
-        <div className="about-me__bio">
-          <img
-            className="about-me__image"
-            src={avatar}
-            alt="фотография студента"
-          ></img>
-          <div className="about-me__bio-info">
-            <h3 className="about-me__name">Наталья</h3>
-            <p className="about-me__age">Фронтенд-разработчик, 39 лет</p>
-            <p className="about-me__text">
+        <div className="about-me__text">
+          <p className="about-me__name">Наталья</p>
+          <p className="about-me__info">Фронтенд-разработчик, 39 лет</p>
+          <p className="about-me__paragraph">
               Я родилась и училась в Перми. Закончив универститет по
               специальности "Менеджмент организации", вышла замуж и переехала в
               Петербург. Работала несеолько лет по специальности. Потом
@@ -23,20 +19,23 @@ const AboutMe = () => {
               фитнессом, фотографией. После декретных отпусков решила
               кардинально поменять сферу деятельности и пошла учиться в Яндекс
               Практикум на веб-разработчика.
-            </p>
-            <a
-              href="https://github.com/Iuzhakova-Natalia"
-              target="_blank"
-              rel="noreferrer"
-              className="about-me__social-link"
-            >
-              Github
-            </a>
-          </div>
+              </p>
+          <Link
+            className="about-me__link"
+            target="_blank"
+            to={"https://github.com/Iuzhakova-Natalia"}
+          >
+            Github
+          </Link>
         </div>
+        <img
+          className="about-me__photo"
+          alt="Фото студента"
+          src={photo}
+        />
       </div>
     </section>
   );
-};
+}
 
 export default AboutMe;

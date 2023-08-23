@@ -1,47 +1,46 @@
+import { Link } from "react-router-dom";
 import "./Portfolio.css";
 
-const Portfolio = () => {
+function Portfolio() {
   return (
     <section className="portfolio">
       <div className="portfolio__container">
-        <h2 className="section-title section-title__type_portfolio">
-          Портфолио
-        </h2>
+        <h3 className="portfolio__header">Портфолио</h3>
         <ul className="portfolio__list">
-          <li className="portfolio__element">
-            <a
-              href="https://iuzhakova-natalia.github.io/how-to-learn/"
-              target="_blank"
-              rel="noopener noreferrer"
+          <li className="portfolio__item">
+            <Link
               className="portfolio__link"
+              target="_blank"
+              to={"https://Iuzhakova-Natalia.github.io/how-to-learn/"}
             >
               Статичный сайт
-            </a>
+              <span className="portfolio__arrow">↗</span>
+            </Link>
           </li>
-          <li className="portfolio__element">
-            <a
-              href="https://iuzhakova-natalia.github.io/russian-travel/"
-              target="_blank"
-              rel="noopener noreferrer"
+          <li className="portfolio__item">
+            <Link
               className="portfolio__link"
+              target="_blank"
+              to={"https://Iuzhakova-Natalia.github.io/russian-travel/"}
             >
               Адаптивный сайт
-            </a>
+              <span className="portfolio__arrow">↗</span>
+            </Link>
           </li>
-          <li className="portfolio__element">
-            <a
-              href="https://iuzhakova-natalia.github.io/mesto/"
-              target="_blank"
-              rel="noopener noreferrer"
+          <li className="portfolio__item">
+            <Link
               className="portfolio__link"
+              target="_blank"
+              to={"https://Iuzhakova-Natalia.github.io/mesto-react/"}
             >
               Одностраничное приложение
-            </a>
+              <span className="portfolio__arrow">↗</span>
+            </Link>
           </li>
         </ul>
       </div>
     </section>
   );
-};
+}
 
 export default Portfolio;

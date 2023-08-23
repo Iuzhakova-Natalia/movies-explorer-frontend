@@ -1,79 +1,60 @@
-import "./Login.css";
-import { useEffect } from "react";
 import { Link } from "react-router-dom";
 import logo from "../../image/logo.svg";
-import useFormWithValidation from "../../components/hooks/useFormWithValidation";
+import "./Login.css";
 
-const Login = ({ logIn }) => {
-  const { values, handleChange, resetForm, errors, isValid } =
-    useFormWithValidation();
-
-  function handleSubmit(e) {
-    e.preventDefault();
-    logIn(values);
-  }
-
-  useEffect(() => {
-    resetForm();
-  }, [resetForm]);
-
+function Login(props) {
   return (
-    <main className="login">
-      <form
-        className="login__form"
-        name="login"
-        noValidate
-        onSubmit={handleSubmit}
-      >
-        <Link to="/" className="login__link">
-          <img src={logo} alt="Логотип" className="login__logo" />
-        </Link>
-        <h1 className="login__title">Рады видеть!</h1>
-        <div className="login__labels-container">
-          <label className="login__label">
-            <span className="login__label-text">E-mail</span>
+    <section className="login">
+      <form className="login__form">
+        <div className="login__wrapper">
+          <Link to={"/"}>
+            <img src={logo} alt="Логотип" className="login__logo-image" />
+          </Link>
+          <h1 className="login__title">Рады видеть!</h1>
+          <label className="login__form-label" htmlFor="email">
+            E-mail
             <input
-              name="email"
-              className={`login__input ${errors.email && "login__input_error"}`}
-              onChange={handleChange}
-              value={values.email || ""}
+              className="login__form-input"
+              id="email"
               type="email"
+              name="email"
+              autoComplete="off"
+              minLength="2"
+              maxLength="30"
               required
+              placeholder="pochta@yandex.ru"
             />
-            <span className="login__error">{errors.email || ""}</span>
           </label>
-          <label className="login__label">
-            <span className="login__label-text">Пароль</span>
+
+          <label className="login__form-label" htmlFor="password">
+            Пароль
             <input
-              name="password"
-              className={`login__input ${
-                errors.password && "login__input_error"
-              }`}
-              onChange={handleChange}
-              value={values.password || ""}
+              className="login__form-input"
               type="password"
+              name="password"
+              id="password"
+              autoComplete="off"
+              minLength="2"
+              maxLength="30"
               required
+              placeholder="••••••••"
             />
-            <span className="login__error">{errors.password || ""}</span>
           </label>
         </div>
-        <button
-          type="submit"
-          className={`login__button ${!isValid && "login__button_disabled"}`}
-          disabled={!isValid}
-          onClick={logIn}
-        >
-          Войти
-        </button>
-        <span className="login__assist">
-          Ещё не зарегистрированы?&nbsp;
-          <Link to="/signup" className="login__link">
-            Регистрация
-          </Link>
-        </span>
+        <div className="login__wrapper">
+          <button type="submit" className="login__button">
+            Войти
+          </button>
+          <p className="login__question">
+            Ещё не зарегистрированы?{" "}
+            <Link to={"/signup"} className="login__link">
+              Регистрация
+            </Link>
+          </p>
+        </div>
       </form>
-    </main>
+    </section>
   );
-};
+}
 
 export default Login;

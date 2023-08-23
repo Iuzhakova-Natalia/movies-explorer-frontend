@@ -1,41 +1,41 @@
-import { useLocation } from "react-router-dom";
+import { timeConverter } from "../../utils/timeConverter";
+import saveCard from "../../image/saveCard.svg";
 import "./MoviesCard.css";
 
-const MoviesCard = (props) => {
-  const path = useLocation().pathname;
+function MoviesCard({ pathname, movie }) {
+  const buttontElement =
+    pathname === "/saved-movies" ? (
+      <button type="button" className="movies-card__button">
+        &#215;
+      </button>
+    ) : movie.isSave ? (
+      <img
+        src={saveCard}
+        alt="Сохранено"
+        className="movies-card__button movies-card__button_typ_save"
+      />
+    ) : (
+      <button type="button" className="movies-card__button">
+        Сохранить
+      </button>
+    );
 
   return (
-    <>
-      <li className="movies-card">
-        <article className="movies-card__item">
-          <a target="_blank" rel="noreferrer" href="/">
-            <img
-              src={props.image}
-              alt={props.name}
-              className="movies-card__image"
-            />
-          </a>
-        </article>
-        <div className="movies-card__description">
-          <h3 className="movies-card__title">{props.name}</h3>
-          {path === "/movies" ? (
-            <label className="movies-card__label">
-              <input className="movies-card__input" type="checkbox" />
-              <span className="movies-card__checkbox"></span>
-            </label>
-          ) : (
-            <button
-              type="button"
-              className="movies-card__button movies-card__button_type_unsave"
-              aria-label="Удалить фильм из сохранённых"
-              title="Удалить фильм из сохранённых"
-            ></button>
-          )}
-        </div>
-        <span className="movies-card__duration">1ч42м</span>
-      </li>
-    </>
+    <article className="movies-card">
+      <div className="movies-card__about">
+        <h2 className="movies-card__header">{movie.nameRU}</h2>
+        <span className="movies-card__duration">
+          {timeConverter(movie.duration)}
+        </span>
+      </div>
+      <img
+        className="movies-card__img"
+        src={movie.thumbnail}
+        alt={movie.nameRU}
+      />
+      {buttontElement}
+    </article>
   );
-};
+}
 
 export default MoviesCard;

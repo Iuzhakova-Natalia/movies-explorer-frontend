@@ -1,92 +1,27 @@
 import "./Techs.css";
 
-const Techs = () => {
+function Techs() {
   return (
     <section className="techs">
+      <h2 className="techs__header">Технологии</h2>
       <div className="techs__container">
-        <h2 className="section-title">Технологии</h2>
-        <div className="techs-info">
-          <h3 className="techs-info__heading">7 технологий</h3>
-          <p className="techs-info__text">
-            На курсе веб-разработки мы освоили технологии, которые применили в
-            дипломном проекте.
-          </p>
-          <ul className="techs__spisok">
-            <li className="techs__spisok-element">
-              <a
-                href="https://doka.guide/html/html"
-                target="_blank"
-                rel="noreferrer"
-                className="techs__spisok-link"
-              >
-                HTML
-              </a>
-            </li>
-            <li className="techs__spisok-element">
-              <a
-                href="https://doka.guide/css/"
-                target="_blank"
-                rel="noreferrer"
-                className="techs__spisok-link"
-              >
-                CSS
-              </a>
-            </li>
-            <li className="techs__spisok-element">
-              <a
-                href="https://doka.guide/js/"
-                target="_blank"
-                rel="noreferrer"
-                className="techs__spisok-link"
-              >
-                JS
-              </a>
-            </li>
-            <li className="techs__spisok-element">
-              <a
-                href="https://doka.guide/js/react-and-alternatives/"
-                target="_blank"
-                rel="noreferrer"
-                className="techs__spisok-link"
-              >
-                React
-              </a>
-            </li>
-            <li className="techs__spisok-element">
-              <a
-                href="https://doka.guide/tools/git-cli/"
-                target="_blank"
-                rel="noreferrer"
-                className="techs__spisok-link"
-              >
-                Git
-              </a>
-            </li>
-            <li className="techs__spisok-element">
-              <a
-                href="https://doka.guide/tools/nodejs/"
-                target="_blank"
-                rel="noreferrer"
-                className="techs__spisok-link"
-              >
-                Express.js
-              </a>
-            </li>
-            <li className="techs__spisok-element">
-              <a
-                href="https://www.mongodb.com/docs/"
-                target="_blank"
-                rel="noreferrer"
-                className="techs__spisok-link"
-              >
-                mongoDB
-              </a>
-            </li>
-          </ul>
-        </div>
+        <h3 className="techs__title">7 технологий</h3>
+        <p className="techs__description">
+          На курсе веб-разработки мы освоили технологии, которые применили в
+          дипломном проекте.
+        </p>
+        <ul className="techs__list">
+          <li className="techs__item">HTML</li>
+          <li className="techs__item">CSS</li>
+          <li className="techs__item">JS</li>
+          <li className="techs__item">React</li>
+          <li className="techs__item">Git</li>
+          <li className="techs__item">Express.js</li>
+          <li className="techs__item">mongoDB</li>
+        </ul>
       </div>
     </section>
   );
-};
+}
 
 export default Techs;

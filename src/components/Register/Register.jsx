@@ -1,99 +1,76 @@
 import { Link } from "react-router-dom";
-import { useEffect } from "react";
-import useFormWithValidation from "../../components/hooks/useFormWithValidation";
 import logo from "../../image/logo.svg";
 import "./Register.css";
 
-const Register = ({ register }) => {
-  const { values, handleChange, resetForm, errors, isValid } =
-    useFormWithValidation();
-
-  function handleSubmit(e) {
-    e.preventDefault();
-    register(values);
-  }
-
-  useEffect(() => {
-    resetForm();
-  }, [resetForm]);
-
+function Register(props) {
   return (
-    <main className="register">
-      <form
-        className="register__form"
-        name="register"
-        noValidate
-        onSubmit={handleSubmit}
-      >
-        <Link to="/" className="register__link">
-          <img src={logo} alt="Логотип" className="register__logo" />
-        </Link>
-        <h1 className="register__title">Добро пожаловать!</h1>
-        <div className="register__labels-container">
-          <label className="register__label">
-            <span className="register__label-text">Имя</span>
+    <section className="register">
+      <form className="register__form">
+        <div className="register__container">
+          <Link to={"/"}>
+            <img src={logo} alt="Логотип" className="register__logo-image" />
+          </Link>
+          <h1 className="register__title">Добро пожаловать!</h1>
+          <label className="register__form-label" htmlFor="name">
+            Имя
             <input
+              className="register__form-input"
+              id="name"
+              type="name"
               name="name"
-              className={`register__input ${
-                errors.name && "register__input_error"
-              }`}
-              onChange={handleChange}
-              value={values.name || ""}
-              type="text"
-              required
+              autoComplete="off"
               minLength="2"
               maxLength="30"
-              pattern="^[A-Za-zА-Яа-яЁё /s -]+$"
+              required
+              placeholder="Виталий"
             />
-            <span className="register__error">{errors.name || ""}</span>
           </label>
-          <label className="register__label">
-            <span className="register__label-text">E-mail</span>
+
+          <label className="register__form-label" htmlFor="email">
+            E-mail
             <input
-              name="email"
-              className={`register__input ${
-                errors.email && "register__input_error"
-              }`}
-              onChange={handleChange}
-              value={values.email || ""}
+              className="register__form-input"
+              id="email"
               type="email"
+              name="email"
+              autoComplete="off"
+              minLength="2"
+              maxLength="30"
               required
+              placeholder="pochta@yandex.ru"
             />
-            <span className="register__error">{errors.email || ""}</span>
           </label>
-          <label className="register__label">
-            <span className="register__label-text">Пароль</span>
+
+          <label className="register__form-label" htmlFor="password">
+            Пароль
             <input
-              name="password"
-              className={`register__input ${
-                errors.password && "register__input_error"
-              }`}
-              onChange={handleChange}
-              value={values.password || ""}
+              className="register__form-input"
               type="password"
+              name="password"
+              id="password"
+              autoComplete="off"
+              minLength="2"
+              maxLength="30"
               required
+              placeholder="••••••••"
             />
-            <span className="register__error">{errors.password || ""}</span>
+            <span className="register__form-error">Что-то пошло не так...</span>
           </label>
         </div>
-        <button
-          type="submit"
-          className={`register__button ${
-            !isValid && "register__button_disabled"
-          }`}
-          disabled={!isValid}
-        >
-          Зарегистрироваться
-        </button>
-        <span className="register__support">
-          Уже зарегистрированы?&nbsp;
-          <Link to="/signin" className="register__link" onClick={register}>
-            Войти
-          </Link>
-        </span>
+        <div className="register__wrapper">
+          <button type="submit" className="register__button">
+            Зарегистрироваться
+          </button>
+          <p className="register__question">
+            Уже зарегистрированы?{" "}
+            <Link to={"/signin"} className="register__link">
+              Войти
+            </Link>
+          </p>
+        </div>
       </form>
-    </main>
+    </section>
   );
-};
+}
 
 export default Register;

@@ -1,17 +1,18 @@
+import { Link } from "react-router-dom";
 import "./NotFound.css";
 
-const NotFound = ({ onBack }) => {
+function PageNotFound() {
   return (
-    <main className="not-found">
-      <p className="not-found__text-container">
-        <span className="not-found__error">404</span>
-        <span className="not-found__error-name">Страница не найдена</span>
-      </p>
-      <button className="not-found__button" type="button" onClick={onBack}>
-        Назад
-      </button>
-    </main>
+    <section className="notfound">
+      <div className="notfound__container">
+        <h1 className="notfound__title">404</h1>
+        <p className="notfound__subtitle">Страница не найдена</p>
+        <Link to={"/"} className="notfound__link">
+          Назад
+        </Link>
+      </div>
+    </section>
   );
-};
+}
 
-export default NotFound;
+export default PageNotFound;
