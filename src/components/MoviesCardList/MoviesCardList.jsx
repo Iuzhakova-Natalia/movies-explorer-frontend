@@ -1,10 +1,10 @@
+import "./MoviesCardList.css";
 import { moviesArray } from "../../utils/moviesArray";
 import MoviesCard from "../MoviesCard/MoviesCard";
 import LoadingButton from "../LoadingButton/LoadingButton";
 import { useLocation } from "react-router-dom";
 import { moviesSave } from "../../utils/moviesSave";
 import Preloader from "../Preloader/Preloader";
-import "./MoviesCardList.css";
 
 function MoviesCardList() {
   const { pathname } = useLocation();

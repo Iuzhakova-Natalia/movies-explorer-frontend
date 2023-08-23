@@ -50,7 +50,7 @@
 }
 
 .movies-card__button_typ_save {
-  padding: 0;
+  background: #EE3465;
 }
 
 .movies-card__button:hover {

@@ -1,6 +1,6 @@
-import { Link } from "react-router-dom";
-import logo from "../../image/logo.svg";
 import "./Login.css";
+import logo from "../../images/logo.svg";
+import { Link } from "react-router-dom";
 
 function Login(props) {
   return (
