@@ -2,7 +2,7 @@ import React from "react";
 import "./App.css";
 
 import { Routes, Route, useNavigate } from "react-router-dom";
-import { CurrentUserContext } from "../../context/CurrentUserContext";
+import { CurrentUserContext } from "../Context/CurrentUserContext";
 import { useState, } from "react";
 
 import Main from "../Main/Main";
