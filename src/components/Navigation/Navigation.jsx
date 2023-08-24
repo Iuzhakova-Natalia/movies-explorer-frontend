@@ -9,7 +9,10 @@ function Navigation(props) {
   const { pathname } = useLocation();
   const isActive = (path) => pathname === path;
   const [showPopup, setShowPopup] = useState(false);
+
+ 
   return (
+  
     <div className="navigation">
       <div className="navigation__wrapper">
         <div className="navigation__buttons-wrapper">
