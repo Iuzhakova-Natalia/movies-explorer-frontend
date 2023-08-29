@@ -1,30 +1,29 @@
-import React from "react";
 import { Link } from "react-router-dom";
-import logo from "../../image/logo.svg";
+import logo from "./../../images/logo.svg";
+import "./Header.css";
 import { useLocation } from "react-router-dom";
 import Navigation from "../Navigation/Navigation";
-import "./Header.css";
+import { useContext } from "react";
+import { AuthContext } from "../../context/AuthContext";
 
-function Header({ isAuth, props }) {
+function Header() {
   const { pathname } = useLocation();
-  const headerStyle = pathname === "/" ? "header header_type_blue" : "header";
+  const headerStyle = pathname === "/" ? "header header_type_main" : "header";
+  const { isAuth } = useContext(AuthContext);
 
   return (
     <header className={headerStyle}>
       <div className="header__container">
         <Link to={"/"} className="header__link">
-          <img className="header__logo" src={logo} alt="Логотип" />
+          <img src={logo} alt="Логотип" className="header__logo" />
         </Link>
 
         {!isAuth ? (
-          <div className="header__nuv">
-            <Link className="header__button" to={"/signup"}>
+          <div className="header__wrapper">
+            <Link className="header__btn" to={"/signup"}>
               Регистрация
             </Link>
-            <Link
-              className="header__button header__button_active"
-              to={"/signin"}
-            >
+            <Link className="header__btn header__btn_populary" to={"/signin"}>
               Войти
             </Link>
           </div>

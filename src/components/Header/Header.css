@@ -2,7 +2,7 @@
   background-color: inherit;
 }
 
-.header_type_blue {
+.header_type_main {
   background-color: #073042;
 }
 
@@ -12,8 +12,8 @@
 
 .header__container {
   max-width: 1280px;
-  max-height: 74px;
   margin: 0 auto;
+  max-height: 74px;
   padding: 18px 70px;
   display: flex;
   justify-content: space-between;
@@ -21,16 +21,20 @@
   box-sizing: border-box;
 }
 
-.header__nuv {
+.header__wrapper {
   display: flex;
   gap: 30px;
 }
 
-.header__button {
-  padding: 8px 20px;
-  cursor: pointer;
+.header__buttons-wrapper {
+  display: flex;
+}
+
+.header__btn {
   background-color: inherit;
   border: 0;
+  padding: 8px 20px;
+  cursor: pointer;
   font-size: 14px;
   font-style: normal;
   font-weight: 500;
@@ -39,19 +43,37 @@
   color: #fff;
 }
 
-.header__button_active {
+.header__btn_populary {
+  background-color: #3ddc84;
   border-radius: 3px;
   box-sizing: border-box;
-  background-color: #3ddc84;
   color: black;
 }
 
-.header__link {
-  width: 38px;
-  height: 38px;
+.header__wrapper_type_auth {
+  gap: 0px;
+  max-height: 30px;
 }
 
-.header__button:hover {
+.header__profile {
+  display: flex;
+}
+
+.header__icon {
+  padding: 10px;
+  align-self: center;
+  box-sizing: border-box;
+  border-radius: 6px;
+  background: #313131;
+  cursor: pointer;
+}
+
+.header__link {
+  height: 38px;
+  width: 38px;
+}
+
+.header__btn:hover {
   opacity: 0.8;
 }
 
@@ -64,7 +86,7 @@
     padding: 18px 30px;
   }
 
-  .header__button {
+  .header__btn {
     font-size: 12px;
   }
 }
@@ -76,11 +98,11 @@
 }
 
 @media screen and (max-width: 350px) {
-  .header__button {
+  .header__btn {
     font-size: 10px;
   }
 
-  .header__nuv {
+  .header__wrapper {
     gap: 14px;
   }
 }

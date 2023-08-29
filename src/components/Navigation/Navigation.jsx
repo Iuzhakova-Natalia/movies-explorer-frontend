@@ -1,18 +1,16 @@
-import { Link, useLocation } from "react-router-dom";
-import Menu from "../Menu/Menu";
-import { useState } from "react";
+import iconMain from "./../../images/icon__COLOR_icon-main.svg";
+import iconHamburger from "./../../images/icon__hamburger.svg";
 import "./Navigation.css";
-import iconMain from "../../image/icon__COLOR_icon-main.svg";
-import hamburgerMenu from "../../image/hamburger-menu.svg";
+import { Link, useLocation } from "react-router-dom";
+import MenuPopup from "./../Popups/MenuPopup";
+import { useState } from "react";
 
 function Navigation(props) {
   const { pathname } = useLocation();
   const isActive = (path) => pathname === path;
   const [showPopup, setShowPopup] = useState(false);
 
- 
   return (
-  
     <div className="navigation">
       <div className="navigation__wrapper">
         <div className="navigation__buttons-wrapper">
@@ -44,28 +42,24 @@ function Navigation(props) {
           <img
             src={iconMain}
             alt="Переход на страницу профиля"
-            className={
-              pathname === "/"
-                ? "navigation__icon navigation__icon_type_blue"
-                : "navigation__icon"
-            }
+            className="navigation__icon"
           />
         </Link>
       </div>
       <div className="navigation__btn-tab">
         <button
-          onClick={setShowPopup}
+          onClick={() => setShowPopup(true)}
           type="button"
           className="navigation__btn"
         >
           <img
-            src={hamburgerMenu}
+            src={iconHamburger}
             alt="Открыть меню"
             className="navigation__icon navigation__icon_type_burger"
           />
         </button>
       </div>
-      <Menu isOpen={showPopup} onClose={() => setShowPopup(false)} />
+      <MenuPopup isOpen={showPopup} onClose={() => setShowPopup(false)} />
     </div>
   );
 }
