@@ -50,6 +50,7 @@ function SavedMovies() {
 
   function filterFilms() {
     const lowerPartOfName = filter.partOfName.toLowerCase();
+
     const isIncludes = (item) => item.toLowerCase().includes(lowerPartOfName);
 
     if (filter.isShort) {

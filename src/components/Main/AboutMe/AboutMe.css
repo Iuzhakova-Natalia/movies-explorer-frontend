@@ -62,7 +62,7 @@
 
 .about-me__about {
   margin: 0;
-  font-feature-settings: 'clig' off, 'liga' off;
+  font-feature-settings: "clig" off, "liga" off;
   font-family: Inter;
   font-size: 14px;
   font-style: normal;

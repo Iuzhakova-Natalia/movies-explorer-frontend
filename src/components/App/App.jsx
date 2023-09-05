@@ -10,14 +10,13 @@ import Preloader from "../Movies/Preloader/Preloader";
 
 function App() {
   const element = useRoutes(routes);
-  const [isAuth, setIsAuth] = useState(Boolean(localStorage.getItem('TOKEN')));
+  const [isAuth, setIsAuth] = useState(Boolean(localStorage.getItem("TOKEN")));
   const [currentUser, setCurrentUser] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
     const checkToken = async () => {
-      const token = localStorage.getItem('TOKEN');
-      console.log(token);
+      const token = localStorage.getItem("TOKEN");
       if (!token) return;
       setIsLoading(true);
       try {

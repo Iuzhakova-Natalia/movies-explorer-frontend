@@ -9,11 +9,16 @@ import Preloader from "./Preloader/Preloader";
 import InfoTooltip from "../InfoTooltip/InfoTooltip";
 
 function Movies() {
-  const initialMovies = JSON.parse(localStorage.getItem("foundMovies")) || [];
-  const initialFilter = JSON.parse(localStorage.getItem("filter")) || {
-    partOfName: "",
-    isShort: false,
-  };
+  const [initialMovies] = useState(
+    JSON.parse(localStorage.getItem("foundMovies")) || []
+  );
+  const [initialFilter] = useState(
+    JSON.parse(localStorage.getItem("filter")) || {
+      partOfName: "",
+      isShort: false,
+    }
+  );
+
   const [movies, setMovies] = useState(initialMovies);
   const [savedMovies, setSavedMovies] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
@@ -42,8 +47,6 @@ function Movies() {
 
   async function getMovies(filter) {
     if (filter.partOfName === "") return;
-    if (movies.length > 0) return;
-
     try {
       setIsLoading(true);
       const res = await api.movies.getInitialMovies();

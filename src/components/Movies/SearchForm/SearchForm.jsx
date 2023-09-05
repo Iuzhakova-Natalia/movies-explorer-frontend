@@ -1,6 +1,6 @@
-import { useEffect, useState } from 'react';
-import FilterCheckbox from '../../FilterCheckbox/FilterCheckbox';
-import './SearchForm.css';
+import { useState } from "react";
+import FilterCheckbox from "../../FilterCheckbox/FilterCheckbox";
+import "./SearchForm.css";
 
 function SearchForm({ filter, handleSubmitSearch, isLoading }) {
   const [shortFilmsFilter, setShortFilmsFilter] = useState(filter.isShort);
@@ -13,13 +13,6 @@ function SearchForm({ filter, handleSubmitSearch, isLoading }) {
       isShort: shortFilmsFilter,
     });
   }
-
-  useEffect(() => {
-    handleSubmitSearch({
-      partOfName: filter.partOfName,
-      isShort: shortFilmsFilter,
-    });
-  }, [shortFilmsFilter]);
 
   return (
     <section className="search-form">
@@ -39,7 +32,7 @@ function SearchForm({ filter, handleSubmitSearch, isLoading }) {
             </button>
           </fieldset>
           <FilterCheckbox
-            text={'Короткометражки'}
+            text={"Короткометражки"}
             shortFilmsFilter={shortFilmsFilter}
             setShortFilmsFilter={setShortFilmsFilter}
           />

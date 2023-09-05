@@ -59,7 +59,7 @@
 }
 
 .menu-popup__close-btn::before {
-  content: '';
+  content: "";
   position: absolute;
   top: 50%;
   left: 50%;
@@ -70,7 +70,7 @@
 }
 
 .menu-popup__close-btn::after {
-  content: '';
+  content: "";
   position: absolute;
   top: 50%;
   left: 50%;

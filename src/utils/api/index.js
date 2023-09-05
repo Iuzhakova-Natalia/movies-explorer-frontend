@@ -10,7 +10,7 @@ export const main = new MainApi({
 });
 
 export const movies = new MoviesApi({
-  baseUrl: ` https://api.nomoreparties.co/beatfilm-movies`,
+  baseUrl: `https://api.nomoreparties.co/beatfilm-movies`,
 }); 
 
 export const api = {
