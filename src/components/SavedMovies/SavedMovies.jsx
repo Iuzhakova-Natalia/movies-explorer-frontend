@@ -13,13 +13,16 @@ function SavedMovies() {
   const [isLoading, setIsLoading] = useState(false);
   const [isShowPopup, setIsShowPopup] = useState(false);
   const [errorPopup, setErrorPopup] = useState("");
-  const [filter, setFilter] = useState({
-    partOfName: "",
-    isShort: false,
-  });
-  const isEmptyQuestion = filter.partOfName === "";
+	const [searchQuery, setSearchQuery] = useState("");
+	const [toggleShort, setToggleShort] = useState(
+		localStorage.getItem('toggleShort') === null
+			? false
+			: JSON.parse(localStorage.getItem('toggleShort'))
+	);
+	const isEmptyQuestion = searchQuery === '';
 
   useEffect(() => {
+
     const getSavedMovies = async () => {
       try {
         setIsLoading(true);
@@ -48,12 +51,15 @@ function SavedMovies() {
     }
   }
 
-  function filterFilms() {
-    const lowerPartOfName = filter.partOfName.toLowerCase();
 
-    const isIncludes = (item) => item.toLowerCase().includes(lowerPartOfName);
 
-    if (filter.isShort) {
+  function filterFilms(query) {
+
+      const lowerPartOfName = query.toLowerCase();
+      const isIncludes = (item) => item.toLowerCase().includes(lowerPartOfName);
+
+
+    if (toggleShort) {
       const res = savedMovies.filter((movie) => movie.duration <= 40);
       return res.filter(
         (movie) => isIncludes(movie.nameRU) || isIncludes(movie.nameEN)
@@ -64,18 +70,31 @@ function SavedMovies() {
     );
   }
 
+   
+
+  useEffect(() => {
+    localStorage.setItem('toggleShort', toggleShort )
+  }, [toggleShort])
+
+
   return (
     <>
       <Header />
       <main className="saved-movies">
-        <SearchForm filter={filter} handleSubmitSearch={setFilter} />
+        <SearchForm  
+        toggleShort={toggleShort}
+        setToggleShort={setToggleShort}
+        searchQuery={searchQuery}
+        handleSubmitSearch={filterFilms}
+        setForSaved={setSearchQuery}
+        />
 
         {isLoading ? (
           <Preloader />
         ) : (
           <SavedMoviesCardList
             isLoading={isLoading}
-            savedMovies={filterFilms()}
+            savedMovies={filterFilms(searchQuery)}
             removeMovie={removeMovie}
             isEmptyQuestion={isEmptyQuestion}
           />

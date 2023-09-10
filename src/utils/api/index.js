@@ -3,7 +3,7 @@ import { MoviesApi } from './MoviesApi';
 
 export const main = new MainApi({
   //baseUrl:    `http://localhost:3000`,
-  baseUrl: `https://api.movies-backend.nomoreparties.co`,
+   baseUrl: `https://api.movies-backend.nomoreparties.co`,
   headers: {
     'Content-Type': 'application/json',
   },

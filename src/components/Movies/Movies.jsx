@@ -9,23 +9,28 @@ import Preloader from "./Preloader/Preloader";
 import InfoTooltip from "../InfoTooltip/InfoTooltip";
 
 function Movies() {
-  const [initialMovies] = useState(
-    JSON.parse(localStorage.getItem("foundMovies")) || []
+  const [allMovies, setAllMovies] = useState(
+    localStorage.getItem("allMovies") === null
+      ? []
+      : JSON.parse(localStorage.getItem("allMovies"))
   );
-  const [initialFilter] = useState(
-    JSON.parse(localStorage.getItem("filter")) || {
-      partOfName: "",
-      isShort: false,
-    }
+  const [movies, setMovies] = useState(
+    localStorage.getItem("filteredMovies") === null
+      ? []
+      : JSON.parse(localStorage.getItem("filteredMovies"))
   );
-
-  const [movies, setMovies] = useState(initialMovies);
   const [savedMovies, setSavedMovies] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
-  const [filter, setFilter] = useState(initialFilter);
+  const [searchQuery, setSearchQuery] = useState("");
+  const [toggleShort, setToggleShort] = useState(
+    localStorage.getItem("toggleShort") === null
+      ? false
+      : JSON.parse(localStorage.getItem("toggleShort"))
+  );
+
   const [isShowPopup, setIsShowPopup] = useState(false);
   const [errorPopup, setErrorPopup] = useState("");
-  const isEmptyQuestion = filter.partOfName === "";
+  const isEmptyQuestion = searchQuery === "";
 
   useEffect(() => {
     const getSavedMovies = async () => {
@@ -45,32 +50,53 @@ function Movies() {
     getSavedMovies();
   }, []);
 
-  async function getMovies(filter) {
-    if (filter.partOfName === "") return;
-    try {
-      setIsLoading(true);
-      const res = await api.movies.getInitialMovies();
-      const savedMoviesRes = await api.main.getInitialMovies();
-      setMovies(res);
-      setSavedMovies(savedMoviesRes);
-    } catch (error) {
-      setErrorPopup(
-        "Произошла ошибка при загрузке фильмов. Попробуйте еще раз позднее."
-      );
-      setIsShowPopup(true);
-    } finally {
-      setIsLoading(false);
-    }
-  }
+  // async function getMovies(searchQuery) {
+  // 	if (searchQuery === '') return;
+  // 	try {
+  // 		setIsLoading(true);
+  // 		const res = await api.movies.getInitialMovies();
+  // 		const savedMoviesRes = await api.main.getInitialMovies();
+  // 		setMovies(res);
+  // 		setSavedMovies(savedMoviesRes);
+  // 	} catch (error) {
+  // 		setErrorPopup('Произошла ошибка при загрузке фильмов. Попробуйте еще раз позднее.');
+  // 		setIsShowPopup(true);
+  // 	} finally {
+  // 		setIsLoading(false);
+  // 	}
+  // }
 
-  async function handleOnSubmit(filter) {
-    await getMovies(filter);
-    setFilter(filter);
-    localStorage.setItem(
-      "foundMovies",
-      JSON.stringify(filterFilms({ ...filter, isShort: false }))
-    );
-    localStorage.setItem("filter", JSON.stringify(filter));
+  async function handleOnSubmit(searchQuery, toggleShort) {
+    setSearchQuery(searchQuery);
+    setToggleShort(toggleShort);
+
+    // при первом поиске фетчим все фильмы
+    if (!allMovies.length) {
+      try {
+        setIsLoading(true);
+        const res = await api.movies.getInitialMovies();
+        const savedMoviesRes = await api.main.getInitialMovies();
+        const filteredMovies = filterFilms(searchQuery, toggleShort, res);
+        setMovies(filteredMovies);
+        setAllMovies(res);
+        setSavedMovies(savedMoviesRes);
+        localStorage.setItem("filteredMovies", JSON.stringify(filteredMovies));
+        localStorage.setItem("allMovies", JSON.stringify(res));
+      } catch (error) {
+        setErrorPopup(
+          "Произошла ошибка при загрузке фильмов. Попробуйте еще раз позднее."
+        );
+        setIsShowPopup(true);
+      } finally {
+        setIsLoading(false);
+      }
+    } else {
+      const filteredMovies = filterFilms(searchQuery, toggleShort, allMovies);
+      setMovies(filteredMovies);
+      localStorage.setItem("filteredMovies", JSON.stringify(filteredMovies));
+    }
+    localStorage.setItem("searchQuery", JSON.stringify(searchQuery));
+    localStorage.setItem("toggleShort", JSON.stringify(toggleShort));
   }
 
   async function saveMovie(card) {
@@ -99,11 +125,11 @@ function Movies() {
     }
   }
 
-  function filterFilms(filter) {
-    const lowerPartOfName = filter?.partOfName.toLowerCase();
+  function filterFilms(searchQuery, toggleShort, movies) {
+    const lowerPartOfName = searchQuery.toLowerCase();
     const isIncludes = (item) => item.toLowerCase().includes(lowerPartOfName);
 
-    if (filter?.isShort) {
+    if (toggleShort) {
       const res = movies.filter((movie) => movie.duration <= 40);
       return res.filter(
         (movie) => isIncludes(movie.nameRU) || isIncludes(movie.nameEN)
@@ -114,12 +140,18 @@ function Movies() {
     );
   }
 
+  useEffect(() => {
+    localStorage.setItem("toggleShort", JSON.stringify(toggleShort));
+  }, [toggleShort]);
+
   return (
     <>
       <Header />
       <main className="movies">
         <SearchForm
-          filter={filter}
+          toggleShort={toggleShort}
+          searchQuery={searchQuery}
+          setToggleShort={setToggleShort}
           handleSubmitSearch={handleOnSubmit}
           isLoading={isLoading}
         />
@@ -128,7 +160,11 @@ function Movies() {
         ) : (
           <MoviesCardList
             isLoading={isLoading}
-            movies={filterFilms(filter)}
+            movies={
+              toggleShort
+                ? movies.filter((movie) => movie.duration <= 40)
+                : movies
+            }
             savedMovies={savedMovies}
             saveMovie={saveMovie}
             removeMovie={removeMovie}
