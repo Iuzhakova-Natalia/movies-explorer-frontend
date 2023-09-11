@@ -1,20 +1,12 @@
-html {
-  background-color: #202020;
-  scroll-behavior: smooth;
-}
-
-.page {
-  max-width: 1280px;
+.App {
+  margin: 0;
+  padding: 0;
+  background: rgba(32, 32, 32, 1);
   min-height: 100vh;
-  margin: 0 auto;
-  box-sizing: border-box;
-  background-color: #202020;
-  font-family: "Inter", Arial, sans-serif;
-  -webkit-text-size-adjust: 100%;
-  -ms-text-size-adjust: 100%;
-  -moz-text-size-adjust: 100%;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-rendering: optimizeLegibility;
-  color: #fff;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  justify-content: space-between;
+  font-family: "Inter", sans-serif, Arial, Helvetica, sans-serif;
+  color: white;
 }

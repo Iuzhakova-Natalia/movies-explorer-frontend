@@ -9,7 +9,7 @@ function Footer() {
           Учебный проект Яндекс.Практикум х BeatFilm.
         </p>
         <div className="footer__wrapper">
-          <p className="footer__date">© {new Date().getFullYear()}</p>
+          <p className="footer__year">© 2023</p>
           <nav className="footer__nav">
             <Link
               target="_blank"

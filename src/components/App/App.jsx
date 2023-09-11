@@ -1,35 +1,43 @@
-import React from "react";
+import { useRoutes } from "react-router";
 import "./App.css";
-
-import { Routes, Route } from "react-router-dom";
-
-import Main from "../Main/Main";
-import Movies from "../Movies/Movies";
-import SavedMovies from "../SavedMovies/SavedMovies";
-import Register from "../Register/Register";
-import Login from "../Login/Login";
-import Profile from "../Profile/Profile";
-import NotFound from "../NotFound/NotFound";
+import routes from "../../routes";
+import "../../utils/api/index";
+import { useEffect, useState } from "react";
+import { AuthContext } from "../../context/AuthContext";
+import { api } from "../../utils/api/index";
+import { CurrentUserContext } from "../../context/CurrentUserContext";
+import Preloader from "../Movies/Preloader/Preloader";
 
 function App() {
-  
+  const element = useRoutes(routes);
+  const [isAuth, setIsAuth] = useState(Boolean(localStorage.getItem("TOKEN")));
+  const [currentUser, setCurrentUser] = useState(null);
+  const [isLoading, setIsLoading] = useState(false);
+
+  useEffect(() => {
+    const checkToken = async () => {
+      const token = localStorage.getItem("TOKEN");
+      if (!token) return;
+      setIsLoading(true);
+      try {
+        const user = await api.main.checkToken(token);
+        setCurrentUser(user);
+        setIsAuth(true);
+      } catch (error) {
+        setIsAuth(false);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+    checkToken();
+  }, [isAuth]);
 
   return (
-    <div className="App">
-      <div className="page">
-        <main className="main">
-          <Routes>
-            <Route path="/" element={<Main />} />
-            <Route path="/movies" element={<Movies />} />
-            <Route path="/saved-movies" element={<SavedMovies />} />
-            <Route path="/profile" element={<Profile />} />
-            <Route path="/signup" element={<Register />} />
-            <Route path="/signin" element={<Login />} />
-            <Route path="*" element={<NotFound />} />
-          </Routes>
-        </main>
-      </div>
-    </div>
+    <AuthContext.Provider value={{ isAuth, setIsAuth }}>
+      <CurrentUserContext.Provider value={{ currentUser, setCurrentUser }}>
+        <div className="App">{isLoading ? <Preloader /> : element}</div>
+      </CurrentUserContext.Provider>
+    </AuthContext.Provider>
   );
 }
 

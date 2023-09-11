@@ -1,7 +1,7 @@
 .navigation__wrapper {
-  max-height: 30px;
   display: flex;
   gap: 0px;
+  max-height: 30px;
 }
 
 .navigation__btn-tab {
@@ -15,16 +15,16 @@
 
 .navigation__btn {
   box-sizing: border-box;
+  background-color: inherit;
+  border: 0;
   padding: 8px 10px 8px 10px;
+  cursor: pointer;
+  color: #fff;
   font-size: 14px;
   font-style: normal;
   font-weight: 400;
   line-height: 18px;
   text-decoration: none;
-  background-color: inherit;
-  border: 0;
-  cursor: pointer;
-  color: #fff;
 }
 
 .navigation__btn:hover {
@@ -37,31 +37,25 @@
 }
 
 .navigation__btn_type_profile {
-  margin-left: 40px;
-  padding: 8px 0px 8px 0px;
   display: flex;
   justify-content: center;
-  align-items: center;
   gap: 13px;
+  margin-left: 40px;
+  padding: 8px 0px 8px 0px;
+  align-items: center;
 }
 
 .navigation__icon {
-  max-width: 100%;
-  padding: 9px;
   align-self: center;
   box-sizing: border-box;
+  padding: 9px;
   border-radius: 6px;
   cursor: pointer;
-  background: #313131;
-}
-
-.navigation__icon_type_blue {
-  background: #0f4157;
+  max-width: 100%;
 }
 
 .navigation__icon_type_burger {
   padding: 0;
-  background: inherit;
 }
 
 .navigation__btn_active_desc {
@@ -69,12 +63,12 @@
 }
 
 @media screen and (max-width: 768px) {
-  .navigation {
-    display: flex;
-  }
-
   .navigation__wrapper {
     display: none;
+  }
+
+  .navigation {
+    display: flex;
   }
 
   .navigation__btn-tab {
@@ -82,11 +76,11 @@
   }
 
   .navigation__btn {
-    display: flex;
-    align-items: center;
     border: 0;
     padding: 0;
     max-width: 44px;
+    display: flex;
+    align-items: center;
   }
 }
 

@@ -1,7 +1,10 @@
-#Сервис с фильмами
+Макет: dark-4
 
-#Фронт дипломного проекта
+запуск проекта:
+npm run start
 
-Ссылка на макет Dark-4: https://disk.yandex.ru/d/dFowL7dbu_FEBA
+Домен фронт части - https://movies-front.nomoreparties.co
+Backend https://api.movies-backend.nomoreparties.co
 
-Домен фронта https://movies-front.nomoreparties.co
+ссылка на пулл реквест level-3 https://github.com/Iuzhakova-Natalia/movies-explorer-frontend/pull/2
+
